@@ -1,0 +1,27 @@
+package com.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.entity.Login;
+import com.repository.LoginRepository;
+
+@Service
+public class LoginService {
+
+	@Autowired
+	LoginRepository loginRepository;
+	
+	public String signIn(Login ll) {
+		
+	}
+	
+	
+	public String signUp(Login ll) {
+		if(ll.getTypeofuser().equalsIgnoreCase("admin")) {
+			return "You can't create admin account";
+		}else {
+							loginRepository.findAllById(ll.getEmailid());
+		}
+	}
+}

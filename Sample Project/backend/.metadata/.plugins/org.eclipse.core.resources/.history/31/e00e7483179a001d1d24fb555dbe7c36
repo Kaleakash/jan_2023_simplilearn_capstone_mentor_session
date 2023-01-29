@@ -1,0 +1,41 @@
+package com.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.entity.Login;
+import com.repository.LoginRepository;
+
+@Service
+public class LoginService {
+
+	@Autowired
+	LoginRepository loginRepository;
+	
+	public String signIn(Login ll) {
+		Optional<Login> res = loginRepository.findById(ll.getEmailid());
+		if(res.isPresent()) {
+			return "Account already exits";
+		}else {
+			loginRepository.save(ll);
+			return "Account created";
+		}
+	}
+	
+	
+	public String signUp(Login ll) {
+		if(ll.getTypeofuser().equalsIgnoreCase("admin")) {
+			return "You can't create admin account";
+		}else {
+			Optional<Login> res = loginRepository.findById(ll.getEmailid());
+			if(res.isPresent()) {
+				return "Account already exits";
+			}else {
+				loginRepository.save(ll);
+				return "Account created";
+			}
+		}
+	}
+}

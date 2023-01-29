@@ -1,0 +1,23 @@
+package com.service;
+
+import org.springframework.stereotype.Service;
+
+import com.entity.Login;
+
+@Service
+public class LoginService {
+
+	
+	public String signIn(Login ll) {
+		
+	}
+	
+	
+	public String signUp(Login ll) {
+		if(ll.getTypeofuser().equalsIgnoreCase("admin")) {
+			return "You can't create admin account";
+		}else {
+							
+		}
+	}
+}
